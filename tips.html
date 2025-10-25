@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BEACON – Tips</title>
+<!-- fonts + Tailwind -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<style>body{font-family:Manrope,"Noto Sans",sans-serif;}</style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b] min-h-screen flex flex-col">
+
+<!-- ── Header (same pattern as other pages) ─────────────────────────────── -->
+<header class="flex items-center justify-between border-b border-[#e8e8f3] px-10 py-4">
+  <div class="flex items-center gap-4">
+    <div class="w-8 h-8">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+        <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/><path d="M9 9h.01M15 9h.01"/>
+      </svg>
+    </div>
+    <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+  </div>
+
+  <nav class="flex gap-6 text-lg font-light">
+    <a href="home.html">home</a>
+    <a href="checkin.html">check&nbsp;in</a>
+    <a href="garden.html">my&nbsp;garden</a>
+    <a href="#">forum</a>
+    <a href="tips.html" class="font-semibold">tips</a>
+    <a href="help.html">help</a>
+    <a href="profile.html">profile</a>
+    <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+    <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase">log&nbsp;out</button>
+  </nav>
+</header>
+
+<!-- ── Main content ─────────────────────────────────────────────────────── -->
+<main class="flex-1 flex flex-col items-center px-6 py-10">
+  <div class="w-full max-w-5xl">
+    <h2 class="text-4xl font-extrabold mb-6 text-center">Tips for a Balanced Mind</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- tip card -->
+      <a href="breathe(tips).html"
+        class="flex items-center gap-3 rounded-lg border border-[#d0d0e6] bg-[#f8f8fb] p-4 w-full text-left
+        hover:bg-[#e8e8f0] focus:outline-none focus:ring-2 focus:ring-[#4f4f96]">
+          <div class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+             style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDED4dvGK2VO7MQFZtb6CrLye18UevalSfX_2rK0gZo3ZSfB1b1vu6VQwYcSifVzk718ziiCO9twgBo5QBJz3A8DzZFUQAIGhVrqp2WoGkwrXHg496hir_8_VtLQpN0mMfFYwE5qJN2BpSsipWJDqph-1nnK2oV5dUCcFSbTpxHJHGPcGT7s3araedqPnmovwy5KDHHv4d_ArIVwwr5xt0PoS-Z4yA3kYuIsOED5WINEIyxYo3YRjPL_infby139Pbqlo_uK1wPWI');">
+          </div>
+       <span class="text-base font-bold">breathe</span>
+      </a>
+
+
+        <a href="draw(tips).html" class="block w-full">
+        <button class="flex items-center gap-3 rounded-lg border border-[#d0d0e6] bg-[#f8f8fb] p-4 w-full text-left hover:bg-[#e8e8f0] focus:outline-none focus:ring-2 focus:ring-[#4f4f96]">
+          <div class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAegfDwh3GwbUDR_m2WYBv3dLpI1Pm1jzYcJ7c8VIwdBLXNX-GJRTxTHaHtyEdS8N15kgZpNtmEHS7gC0I4AKlIXyV3LuOZhZlSJSzGCszW5K1c8B-_gW3py1fbfHY9SejRnRR0eCFDk1_M3QvVBpq0FwUDec7Q2AC4ehceblmHSVZ5WQaWYM1LTDbV-FKEtUXHpo5TcEZYuS9giSWibt0xXlbw-T2PV4jYdhKDmxYkJ9tbgzJ4gbJwUgN5lWb9jZKirm4oSg-cqS4');"></div>
+          <span class="text-base font-bold">draw</span>
+        </button>
+       </a>
+
+        <a href="dance(tips).html" class="block w-full">
+         <button class="flex items-center gap-3 rounded-lg border border-[#d0d0e6] bg-[#f8f8fb] p-4 w-full text-left hover:bg-[#e8e8f0] focus:outline-none focus:ring-2 focus:ring-[#4f4f96]">
+           <div class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtI2pHpAVAqST9cLX-cd8UM8-iPv7a2Xz5INUKLr-CBnn5mkHdyHC0CZyiILw4e_RvnQpFFL84E-D-eccy_qu0w_w4TnTzEoaPO-xfmJR9WPrCdXoMmrc7BvXkMNFEwPgBo9x9CCx39DS2-lHHu9AkamQN9GzkI9aE8ikdEYdyltEKGODpaifk2zM12E5uMi7yW9itL5UiDWY2nX7B6VBwa-ADEyM8558-W_g8Qv32x5yaKX_HgG2pIBin9S6lVkuaRSact1scew8');"></div>
+           <span class="text-base font-bold">dance</span>
+         </button>
+       </a>
+
+       <a href="music(tips).html" class="block w-full">
+         <button class="flex items-center gap-3 rounded-lg border border-[#d0d0e6] bg-[#f8f8fb] p-4 w-full text-left hover:bg-[#e8e8f0] focus:outline-none focus:ring-2 focus:ring-[#4f4f96]">
+           <div class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtI2pHpAVAqST9cLX-cd8UM8-iPv7a2Xz5INUKLr-CBnn5mkHdyHC0CZyiILw4e_RvnQpFFL84E-D-eccy_qu0w_w4TnTzEoaPO-xfmJR9WPrCdXoMmrc7BvXkMNFEwPgBo9x9CCx39DS2-lHHu9AkamQN9GzkI9aE8ikdEYdyltEKGODpaifk2zM12E5uMi7yW9itL5UiDWY2nX7B6VBwa-ADEyM8558-W_g8Qv32x5yaKX_HgG2pIBin9S6lVkuaRSact1scew8');"></div>
+           <span class="text-base font-bold">music</span>
+         </button>
+       </a>
+
+       <a href="journal(tips).html" class="block w-full">
+         <button class="flex items-center gap-3 rounded-lg border border-[#d0d0e6] bg-[#f8f8fb] p-4 w-full text-left hover:bg-[#e8e8f0] focus:outline-none focus:ring-2 focus:ring-[#4f4f96]">
+           <div class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtI2pHpAVAqST9cLX-cd8UM8-iPv7a2Xz5INUKLr-CBnn5mkHdyHC0CZyiILw4e_RvnQpFFL84E-D-eccy_qu0w_w4TnTzEoaPO-xfmJR9WPrCdXoMmrc7BvXkMNFEwPgBo9x9CCx39DS2-lHHu9AkamQN9GzkI9aE8ikdEYdyltEKGODpaifk2zM12E5uMi7yW9itL5UiDWY2nX7B6VBwa-ADEyM8558-W_g8Qv32x5yaKX_HgG2pIBin9S6lVkuaRSact1scew8');"></div>
+           <span class="text-base font-bold">journal</span>
+         </button>
+       </a>
+
+
+       <a href="game(tips).html" class="block w-full">
+         <button class="flex items-center gap-3 rounded-lg border border-[#d0d0e6] bg-[#f8f8fb] p-4 w-full text-left hover:bg-[#e8e8f0] focus:outline-none focus:ring-2 focus:ring-[#4f4f96]">
+           <div class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtI2pHpAVAqST9cLX-cd8UM8-iPv7a2Xz5INUKLr-CBnn5mkHdyHC0CZyiILw4e_RvnQpFFL84E-D-eccy_qu0w_w4TnTzEoaPO-xfmJR9WPrCdXoMmrc7BvXkMNFEwPgBo9x9CCx39DS2-lHHu9AkamQN9GzkI9aE8ikdEYdyltEKGODpaifk2zM12E5uMi7yW9itL5UiDWY2nX7B6VBwa-ADEyM8558-W_g8Qv32x5yaKX_HgG2pIBin9S6lVkuaRSact1scew8');"></div>
+           <span class="text-base font-bold">mini games</span>
+         </button>
+       </a>
+  </div>
+</main>
+
+<script>
+  function openAuthPopup(){alert('Auth popup placeholder');}
+</script>
+</body>
+</html>

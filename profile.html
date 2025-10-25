@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BEACON | Profile</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <style>
+    body { font-family: Manrope, "Noto Sans", sans-serif; }
+
+    input.input-field,
+    select.dropdown {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid #c5c5ec;
+      width: 640px;
+      max-width: 100%;
+      font-size: 1rem;
+      background-color: #f1efff;
+      color: #1a1a1a;
+      margin-top: 0.4rem;
+      box-sizing: border-box;
+    }
+
+    select:disabled, input:disabled {
+      background-color: #f1efff;
+      color: #444;
+    }
+
+    .button {
+      margin-top: 1.5rem;
+      background-color: #d1d1f9;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-transform: lowercase;
+    }
+
+    .button.white {
+      background-color: #fff;
+      color: #1a1a1a;
+      border: 1px solid #ccc;
+    }
+
+    .flex-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+
+<body class="bg-[#f8f8fb] text-[#0e0e1b]">
+  <header class="flex items-center justify-between border-b border-[#e8e8f3] px-10 py-4">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+          <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/>
+          <path d="M9 9h.01M15 9h.01"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+    </div>
+
+    
+    <nav class="flex gap-6 text-lg font-light">
+      <a href="home.html">home</a>
+      <a href="checkin.html">check in</a>
+      <a href="garden.html">my garden</a>
+      <a href="#">forum</a>
+      <a href="tips.html">tips</a>
+      <a href="help.html">help</a>
+      <a href="profile.html" class="font-semibold">profile</a>
+      <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+      <button id="logoutBtn" class="px-4 py-1 text-sm lowercase">log out</button>
+    </nav>
+  </header>
+
+  <div class="max-w-2xl mx-auto mt-12 bg-white shadow-xl rounded-2xl p-10 text-center">
+    <h1 class="text-2xl font-bold mb-1">Your Profile</h1>
+    <p class="text-sm text-gray-500 mb-6 lowercase">welcome back to your space of self-awareness and growth 🌱</p>
+
+    <div class="text-left space-y-4">
+      <div>
+        <label class="block font-semibold lowercase">name:</label>
+        <input type="text" class="input-field" id="name" disabled />
+      </div>
+
+      <div>
+        <label class="block font-semibold lowercase">age:</label>
+        <input type="text" class="input-field" id="age" disabled />
+      </div>
+
+      <div>
+        <label class="block font-semibold lowercase">gender:</label>
+        <select id="gender" class="dropdown" disabled>
+          <option value="">select your gender</option>
+          <option value="female">female</option>
+          <option value="male">male</option>
+          <option value="nonbinary">non-binary</option>
+          <option value="prefer_not_to_say">prefer not to say</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-semibold lowercase">pronouns:</label>
+        <select id="pronouns" class="dropdown" onchange="handlePronounChange()" disabled>
+          <option value="">select your pronouns</option>
+          <option value="she/her">she/her</option>
+          <option value="he/him">he/him</option>
+          <option value="they/them">they/them</option>
+          <option value="custom">prefer to self-describe</option>
+        </select>
+      </div>
+
+      <div id="customPronounsWrapper" class="hidden">
+        <input type="text" class="input-field" id="customPronouns" placeholder="enter your pronouns" />
+        <button class="button" onclick="setCustomPronouns()">enter</button>
+      </div>
+
+      <div>
+        <label class="block font-semibold lowercase">joined:</label>
+        <input type="text" class="input-field" value="july 1, 2025" disabled />
+      </div>
+
+      <div>
+        <label class="block font-semibold lowercase">check-in streak:</label>
+        <input type="text" class="input-field" value="6 days" disabled />
+      </div>
+
+      <div>
+        <label class="block font-semibold lowercase">last mood logged:</label>
+        <input type="text" class="input-field" value="hopeful" disabled />
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <button class="button white" onclick="enableEditing()">edit</button>
+      <button class="button white" onclick="saveProfile()">save</button>
+    </div>
+    
+    <div class="mt-1 flex justify-center">
+      <a href="home.html" class="button lowercase text-black bg-[#d1d1f9]">log out</a>
+    </div>
+    
+
+  <div id="profileToast" class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-[#d1d1f9] text-[#0e0e1b] text-sm px-6 py-3 rounded-xl shadow-xl hidden z-50 transition duration-300">
+    <span id="profileToastMessage">Profile saved successfully</span>
+  </div>
+
+  <div id="toast" class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-red-100 text-red-800 text-sm px-6 py-3 rounded-xl shadow-xl hidden z-50 transition duration-300">
+    <span id="toastMessage"></span>
+  </div>
+
+ 
+  <script>
+    async function loadProfile() {
+      const email = localStorage.getItem("beacon_user_email");
+      if (!email) {
+        console.error("No user email found.");
+        return;
+      }
+
+      try {
+        const res = await fetch(`http://localhost:3000/api/get-profile/${email}`);
+        const data = await res.json();
+
+        document.getElementById('name').value = data.name || '';
+        document.getElementById('age').value = data.age || '';
+        document.getElementById('gender').value = data.gender || '';
+        document.getElementById('pronouns').value = data.pronouns || '';
+
+        if (data.pronouns && !['she/her', 'he/him', 'they/them', 'custom'].includes(data.pronouns)) {
+          document.getElementById('customPronounsWrapper').classList.remove('hidden');
+          document.getElementById('customPronouns').value = data.pronouns;
+        }
+      } catch (err) {
+        console.error("Failed to load profile:", err);
+      }
+    }
+
+    function enableEditing() {
+      ["name", "age", "gender", "pronouns"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.disabled = false;
+      });
+    }
+
+    function saveProfile() {
+      const userId = localStorage.getItem("beacon_user_email");
+      const profileData = {
+        name: document.getElementById('name').value,
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        pronouns: document.getElementById('pronouns').value === 'custom'
+          ? document.getElementById('customPronouns').value
+          : document.getElementById('pronouns').value
+      };
+
+      fetch("http://localhost:3000/api/save-profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, profileData })
+      })
+        .then(res => res.json())
+        .then(() => {
+          document.querySelectorAll('input, select').forEach(el => el.disabled = true);
+          const toast = document.getElementById('profileToast');
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 3000);
+
+          loadProfile();
+        })
+        .catch(err => console.error("Save failed:", err));
+    }
+
+    function handlePronounChange() {
+      const select = document.getElementById('pronouns');
+      const wrapper = document.getElementById('customPronounsWrapper');
+      wrapper.classList.toggle('hidden', select.value !== 'custom');
+    }
+
+    function setCustomPronouns() {
+      const input = document.getElementById('customPronouns');
+      const select = document.getElementById('pronouns');
+      const customValue = input.value.trim();
+
+      if (customValue !== '') {
+        const newOption = document.createElement('option');
+        newOption.value = customValue;
+        newOption.text = customValue;
+        newOption.selected = true;
+        select.appendChild(newOption);
+        document.getElementById('customPronounsWrapper').classList.add('hidden');
+      }
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("beacon_user_email");
+      window.location.href = "home.html";
+    });
+
+
+    window.addEventListener("DOMContentLoaded", async () => {
+      const email = localStorage.getItem('beacon_user_email');
+      const toast = document.getElementById("toast");
+      const toastMessage = document.getElementById("toastMessage");
+
+      if (!email) {
+        toastMessage.textContent = "User not logged in. Please log in first.";
+        toast.classList.remove("hidden");
+        setTimeout(() => {
+          toast.classList.add("hidden");
+          window.location.href = "home.html#auth";
+        }, 3000);
+        return;
+      }
+
+      try {
+        const verifyRes = await fetch(`http://localhost:3000/is-verified/${email}`);
+        const { verified } = await verifyRes.json();
+
+        if (!verified) {
+          toastMessage.textContent = "You need to verify your email first.";
+          toast.classList.remove("hidden");
+          setTimeout(() => {
+            toast.classList.add("hidden");
+            window.location.href = "home.html#auth";
+          }, 3000);
+          return;
+        }
+
+        await loadProfile();
+      } catch (err) {
+        console.error("Error verifying or loading profile:", err);
+      }
+    });
+  </script>
+</body>
+</html>

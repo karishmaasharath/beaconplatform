@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BEACON – Help</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>body{font-family:Manrope,"Noto Sans",sans-serif;}</style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b] min-h-screen flex flex-col">
+
+  <!-- Header -->
+<header class="flex items-center justify-between px-10 py-4 border-b border-[#e8e8f3] bg-[#f8f8fb]">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+          <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/>
+          <path d="M9 9h.01M15 9h.01"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+    </div>
+    <nav class="flex gap-6 text-lg font-light">
+      <a href="home.html">home</a>
+      <a href="checkin.html">check in</a>
+      <a href="garden.html">my garden</a>
+      <a href="#">forum</a>
+      <a href="tips.html">tips</a>
+      <a href="help.html" class="font-semibold">help</a>
+      <a href="profile.html">profile</a>
+      <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+    </nav>
+  </header>
+  
+
+  <!-- Main Content -->
+  <main class="flex-1 px-6 py-10 max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl font-extrabold mb-6">Emergency Mental Health Contacts</h2>
+    <p class="text-[#4f4f96] mb-10">
+      If you or someone you know is in crisis, please reach out to one of these organizations. Help is available.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">USA</h3>
+        <p><strong>988 Suicide & Crisis Lifeline</strong>: 988</p>
+        <p><strong>National Helpline</strong>: 1-800-662-HELP (4357)</p>
+      </div>
+      
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">UK</h3>
+        <p><strong>Samaritans</strong>: 116 123 (free 24/7)</p>
+        <p><strong>NHS Urgent Mental Health</strong>: 111 (option 2)</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">India</h3>
+        <p><strong>iCall</strong>: +91 9152987821</p>
+        <p><strong>AASRA</strong>: +91 9820466726</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">Australia</h3>
+        <p><strong>Lifeline</strong>: 13 11 14</p>
+        <p><strong>Beyond Blue</strong>: 1300 224 636</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">Canada</h3>
+        <p><strong>Talk Suicide Canada</strong>: 1-833-456-4566</p>
+        <p><strong>KIDS Help Phone</strong>: 1-800-668-6868</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">South Africa</h3>
+        <p><strong>SADAG</strong>: 0800 456 789</p>
+        <p><strong>24hr Suicide Crisis Line</strong>: 0800 567 567</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">Singapore</h3>
+        <p><strong>Samaritans of Singapore</strong>: 1800 221 4444</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-xl shadow border border-[#e0e0f0]">
+        <h3 class="font-bold text-lg mb-1">Japan</h3>
+        <p><strong>TELL Lifeline</strong>: 03-5774-0992</p>
+        <p><strong>Tokyo English Lifeline</strong>: 03-5774-0992</p>
+      </div>
+    </div>
+
+    <p class="text-sm text-[#6a6a8c] mt-10">
+      Note: This is not a complete list. Please consult your local authorities or health services for the most updated emergency contacts in your area.
+    </p>
+  </main>
+
+  <script>
+    function openAuthPopup(){
+      alert("Register or log in functionality coming soon!");
+    }
+  </script>
+</body>
+</html>

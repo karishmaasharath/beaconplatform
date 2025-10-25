@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BEACON - Journal</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Epilogue:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+
+
+  <body class="bg-[#f8f8fb] text-[#0e0e1b]">
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-slate-50 group/design-root overflow-x-hidden"
+      style='font-family: Epilogue, "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- BEACON Header -->
+        <header class="flex items-center justify-between border-b border-[#e8e8f3] px-10 py-4">
+          <div class="flex items-center gap-6">
+            <div class="w-8 h-8">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" class="w-full h-full">
+                <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/>
+                <path d="M9 9h.01M15 9h.01"/>
+              </svg>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+          </div>
+          <nav class="flex gap-6 text-lg font-light">
+            <a href="home.html">home</a>
+            <a href="checkin.html">check&nbsp;in</a>
+            <a href="garden.html">my&nbsp;garden</a>
+            <a href="#">forum</a>
+            <a href="tips.html" class="font-semibold">tips</a>
+            <a href="help.html">help</a>
+            <a href="profile.html">profile</a>
+            <button class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+            <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase">log&nbsp;out</button>
+          </nav>
+        </header>
+        <!-- End of BEACON Header -->
+
+
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-[#0d141c] tracking-light text-[32px] font-bold leading-tight">Daily Prompts</p>
+                <p class="text-[#49739c] text-sm font-normal leading-normal">
+                  Explore today's prompts to guide your reflection and journaling.
+                </p>
+              </div>
+            </div>
+
+
+            <!-- Prompts -->
+            <div class="space-y-4">
+              <!-- Prompt 1 -->
+              <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0d141c] text-base font-medium leading-normal">Challenge Reflection</p>
+                  <p class="text-[#4f4f96] text-sm font-normal leading-normal">
+                    Reflect on a recent challenge you overcame. What did you learn from the experience?
+                  </p>
+                </div>
+                <div class="shrink-0">
+                  <button onclick="goToJournal('Challenge Reflection', 'Reflect on a recent challenge you overcame. What did you learn from the experience?')"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#d1d1f9] text-[#0e0e1b] text-sm font-medium leading-normal w-fit hover:bg-[#c4c4f1] transition">
+                    <span class="truncate">Type</span>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Prompt 2 -->
+              <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0d141c] text-base font-medium leading-normal">Joyful Moments</p>
+                  <p class="text-[#4f4f96] text-sm font-normal leading-normal">
+                    Describe a moment today that made you smile. What brought you joy?
+                  </p>
+                </div>
+                <div class="shrink-0">
+                  <button onclick="goToJournal('Joyful Moments', 'Describe a moment today that made you smile. What brought you joy?')"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#d1d1f9] text-[#0e0e1b] text-sm font-medium leading-normal w-fit hover:bg-[#c4c4f1] transition">
+                    <span class="truncate">Type</span>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Prompt 3 -->
+              <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0d141c] text-base font-medium leading-normal">Mindful Pause</p>
+                  <p class="text-[#4f4f96] text-sm font-normal leading-normal">
+                    Take a deep breath. What are you feeling in your body right now? Where do you feel tension or ease?
+                  </p>
+                </div>
+                <div class="shrink-0">
+                  <button onclick="goToJournal('Mindful Pause', 'Take a deep breath. What are you feeling in your body right now? Where do you feel tension or ease?')"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#d1d1f9] text-[#0e0e1b] text-sm font-medium leading-normal w-fit hover:bg-[#c4c4f1] transition">
+                    <span class="truncate">Type</span>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Prompt 4 -->
+              <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0d141c] text-base font-medium leading-normal">Gratitude Check</p>
+                  <p class="text-[#4f4f96] text-sm font-normal leading-normal">
+                    List three things you are grateful for today. Why do they matter to you?
+                  </p>
+                </div>
+                <div class="shrink-0">
+                  <button onclick="goToJournal('Gratitude Check', 'List three things you are grateful for today. Why do they matter to you?')"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#d1d1f9] text-[#0e0e1b] text-sm font-medium leading-normal w-fit hover:bg-[#c4c4f1] transition">
+                    <span class="truncate">Type</span>
+                  </button>
+                </div>
+              </div>
+
+
+              <!-- Prompt 5 -->
+              <div class="flex items-center gap-4 bg-slate-50 px-4 min-h-[72px] py-2 justify-between">
+                <div class="flex flex-col justify-center">
+                  <p class="text-[#0d141c] text-base font-medium leading-normal">Tomorrow's Intention</p>
+                  <p class="text-[#4f4f96] text-sm font-normal leading-normal">
+                    Set an intention for tomorrow. How do you want to feel or act?
+                  </p>
+                </div>
+                <div class="shrink-0">
+                  <button onclick="goToJournal('Tomorrow\'s Intention', 'Set an intention for tomorrow. How do you want to feel or act?')"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-[#d1d1f9] text-[#0e0e1b] text-sm font-medium leading-normal w-fit hover:bg-[#c4c4f1] transition">
+                    <span class="truncate">Type</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- View Notebook Button -->
+            <div class="mt-12 flex justify-center">
+              <a
+                href="diary.html"
+                class="bg-[#0e0e1b] text-white font-medium text-sm rounded-full px-6 py-3 hover:bg-[#1c1c2c] transition"
+              >
+                📖 View Your Notebook
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="window.location.href='tips.html'"
+                class="underline text-sm text-[#4f4f96] hover:text-[#2e2e80]">
+          Go back to tips page
+        </button>
+      </div>
+
+
+    <script>
+      function goToJournal(title, desc) {
+        const url = `notebook(journal).html?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(desc)}`;
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
+
+

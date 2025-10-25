@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Notebook - BEACON</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    .entry {
+      background: repeating-linear-gradient(
+        to bottom,
+        #fff 0px,
+        #fff 24px,
+        #d3e0ea 25px
+      );
+      font-family: 'Indie Flower', cursive;
+      line-height: 24px;
+      font-size: 18px;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      margin-bottom: 24px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b] p-8 font-sans">
+  <header class="mb-6 text-center">
+    <h1 class="text-4xl font-extrabold mb-2">📓 Your Notebook</h1>
+    <p class="text-gray-600">A collection of your saved journal entries.</p>
+  </header>
+
+
+  <main id="entriesContainer" class="max-w-3xl mx-auto">
+    <!-- Entries will be inserted here -->
+  </main>
+
+
+  <div class="text-center mt-10">
+    <a href="journal(tips).html" class="bg-[#d1d1f9] text-[#0e0e1b] font-bold px-6 py-3 rounded-full text-sm hover:bg-[#b8b8f5] transition">
+       Back to Prompts
+    </a>
+  </div>
+
+
+  <script>
+    const container = document.getElementById('entriesContainer');
+    const entries = JSON.parse(localStorage.getItem('beaconNotebook') || '[]');
+
+
+    if (entries.length === 0) {
+      container.innerHTML = `<p class="text-center text-gray-500">No journal entries yet. Start writing to see them here!</p>`;
+    } else {
+      entries.reverse().forEach(entry => {
+        const entryEl = document.createElement('div');
+        entryEl.className = 'entry';
+        entryEl.innerHTML = `
+          <p class="text-xl font-bold text-[#0d141c] mb-1">${entry.title}</p>
+          <p class="text-sm text-[#4f4f96] mb-2">${entry.desc}</p>
+          <p class="text-xs text-gray-400 mb-2">${new Date(entry.date).toLocaleString()}</p>
+          <div>${entry.content ? entry.content.replace(/\n/g, '<br>') : '<em>(empty entry)</em>'}</div>
+        `;
+        container.appendChild(entryEl);
+      });
+    }
+  </script>
+</body>
+</html>

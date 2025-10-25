@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>BEACON – Music</title>
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+ <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+ <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+ <style>body{font-family:Manrope,"Noto Sans",sans-serif;}</style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b] min-h-screen flex flex-col">
+
+ <!-- Header -->
+ <header class="flex items-center justify-between px-10 py-4 border-b border-[#e8e8f3] bg-white">
+   <div class="flex items-center gap-3">
+     <div class="w-8 h-8">
+       <svg><!-- logo --></svg>
+     </div>
+     <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+   </div>
+   <nav class="flex gap-6 text-lg font-light">
+     <a href="home.html">home</a>
+     <a href="checkin.html">check in</a>
+     <a href="garden.html">my garden</a>
+     <a href="#">forum</a>
+     <a href="tips.html" class="font-semibold"> tips</a>
+     <a href="help.html">help</a>
+     <a href="profile.html">profile</a>
+     <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+     <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase">log out</button>
+   </nav>
+ </header>
+
+ <div class="px-40 flex flex-1 justify-center py-5">
+   <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+     <div class="flex flex-wrap justify-between gap-3 p-4">
+       <div class="flex min-w-72 flex-col gap-1">
+         <p class="text-[#0e0e1b] tracking-light text-[32px] font-bold leading-tight">Music for Your Mind</p>
+         <p class="text-[#4f4f96] text-base font-normal leading-normal">Curated soundscapes and podcasts to meet you where you are.</p>
+       </div>
+     </div>
+
+     <!-- Music Sections -->
+     <div class="space-y-6">
+       <!-- Each section block -->
+       <div class="px-4 py-4">
+         <h2 class="text-[#0e0e1b] text-[22px] font-bold pb-2">For When You’re Stressed</h2>
+         <p class="text-[#4f4f96] text-base pb-2">Find peace with calming instrumental playlists and lo-fi beats.</p>
+         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWXe9gFZP0gtP?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+       </div>
+
+       <div class="px-4 py-4">
+         <h2 class="text-[#0e0e1b] text-[22px] font-bold pb-2">For When You’re Anxious</h2>
+         <p class="text-[#4f4f96] text-base pb-2">Soothe your mind with nature sounds and gentle podcasts.</p>
+         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2Q57Ffyd6UCyLYONAskwcD?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+       </div>
+
+       <div class="px-4 py-4">
+         <h2 class="text-[#0e0e1b] text-[22px] font-bold pb-2">For a Boost of Joy</h2>
+         <p class="text-[#4f4f96] text-base pb-2">Lift your spirits with happy, upbeat songs.</p>
+         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/66F58njHjDIVYTOUPT76RU?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+       </div>
+
+       <div class="px-4 py-4">
+         <h2 class="text-[#0e0e1b] text-[22px] font-bold pb-2">For Winding Down</h2>
+         <p class="text-[#4f4f96] text-base pb-2">Relax with slow acoustic or ambient music.</p>
+         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1TSaHYgQ4TUwts2dKeTTsq?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+       </div>
+
+       <div class="px-4 py-4">
+         <h2 class="text-[#0e0e1b] text-[22px] font-bold pb-2">Uplifting Podcasts</h2>
+         <p class="text-[#4f4f96] text-base pb-2">Listen to podcasts that inspire and uplift.</p>
+         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/3Om9xBnBiT6bMKlUcxGexC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+       </div>
+     </div>
+
+     <!-- Go Back Button -->
+     <div class="flex justify-center py-10">
+       <button onclick="window.location.href='tips.html'"
+               class="underline text-sm text-[#4f4f96] hover:text-[#2e2e80]">
+         Go back to tips page
+       </button>
+     </div>
+   </div>
+ </div>
+
+</body>
+</html>

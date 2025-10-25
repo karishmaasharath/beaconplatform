@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BEACON – Draw</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>body{font-family:Manrope,"Noto Sans",sans-serif;}</style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b] min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between px-10 py-4 border-b border-[#e8e8f3] bg-white">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8">
+        <svg><!-- logo --></svg>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+    </div>
+    <nav class="flex gap-6 text-lg font-light">
+      <a href="home.html">home</a>
+      <a href="checkin.html">check in</a>
+      <a href="garden.html">my garden</a>
+      <a href="#">forum</a>
+      <a href="tips.html" class="font-semibold"> tips</a>
+      <a href="help.html">help</a>
+      <a href="profile.html">profile</a>
+      <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+      <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase">log out</button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 px-6 py-10 max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-extrabold mb-4">Draw Your Thoughts</h2>
+    <p class="text-[#4f4f96] mb-8">
+      Express yourself through art. No experience needed—just bring an open mind.
+    </p>
+    <div class="flex flex-col gap-4 items-center">
+      <button id="drawStart" class="bg-[#d1d1f9] text-[#0e0e1b] font-bold px-8 py-3 rounded-full text-sm">
+        Start Drawing
+      </button>
+      <button onclick="window.location.href='tips.html'"
+              class="underline text-sm text-[#4f4f96] hover:text-[#2e2e80]">
+        Go back to tips page
+      </button>
+    </div>
+
+    <!-- Drawing Tools -->
+    <div id="drawArea" class="mt-8 hidden">
+      <div class="flex flex-wrap gap-2 justify-center mb-4">
+        <button class="color-btn w-8 h-8 rounded-full border" style="background: #0e0e1b;" data-color="#0e0e1b"></button>
+        <button class="color-btn w-8 h-8 rounded-full border" style="background: #f87171;" data-color="#f87171"></button>
+        <button class="color-btn w-8 h-8 rounded-full border" style="background: #60a5fa;" data-color="#60a5fa"></button>
+        <button class="color-btn w-8 h-8 rounded-full border" style="background: #34d399;" data-color="#34d399"></button>
+        <button class="color-btn w-8 h-8 rounded-full border" style="background: #c084fc;" data-color="#c084fc"></button>
+        <button id="eraserBtn" class="px-4 py-1 text-sm border rounded-full bg-white text-[#0e0e1b] hover:bg-[#eee]">
+          Eraser
+        </button>
+      </div>
+      <canvas id="drawingCanvas" width="800" height="500" class="border border-[#d1d1f9] rounded shadow-lg bg-white"></canvas>
+    </div>
+  </main>
+
+  <!-- Auth Popup -->
+  <div id="authPopup" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl p-8 shadow-xl max-w-sm w-full text-center relative">
+      <button onclick="closePopup()" class="absolute top-2 right-2 text-[#0e0e1b] text-xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-6">Welcome to BEACON</h2>
+      <!-- Signup/login forms -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function openAuthPopup() {
+      document.getElementById('authPopup').classList.remove('hidden');
+    }
+    function closePopup() {
+      document.getElementById('authPopup').classList.add('hidden');
+    }
+
+    const drawBtn = document.getElementById('drawStart');
+    const drawArea = document.getElementById('drawArea');
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let isDrawing = false;
+    let currentColor = "#0e0e1b";
+    let brushSize = 2;
+
+    drawBtn.addEventListener('click', () => {
+      drawArea.classList.remove('hidden');
+    });
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isDrawing) return;
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.strokeStyle = currentColor;
+      ctx.lineWidth = brushSize;
+      ctx.lineCap = "round";
+      ctx.stroke();
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isDrawing = false;
+      ctx.closePath();
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isDrawing = false;
+      ctx.closePath();
+    });
+
+    // Color buttons
+    document.querySelectorAll('.color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentColor = btn.getAttribute('data-color');
+        brushSize = 2;
+      });
+    });
+
+    // Eraser button
+    document.getElementById('eraserBtn').addEventListener('click', () => {
+      currentColor = "#ffffff";
+      brushSize = 10;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEACON – My Garden</title>
+
+  <!-- Fonts + Tailwind -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <style>
+    body { font-family: Manrope, "Noto Sans", sans-serif; }
+    .plant-svg {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+    .grow-transition {
+      transition: all 1s ease-in-out;
+    }
+    .bloom {
+      animation: bloom 1.5s ease-in-out forwards;
+    }
+    @keyframes bloom {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b]">
+  <!-- Header -->
+  <header class="flex items-center justify-between border-b border-[#e8e8f3] px-10 py-4">
+    <div class="flex items-center gap-6">
+      <div class="w-8 h-8">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+          <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/><path d="M9 9h.01M15 9h.01"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+    </div>
+    <nav class="flex gap-6 text-lg font-light">
+      <a href="home.html">home</a>
+      <a href="checkin.html">check&nbsp;in</a>
+      <a href="garden.html" class="font-semibold">my&nbsp;garden</a>
+      <a href="#">forum</a>
+      <a href="tips.html">tips</a>
+      <a href="help.html">help</a>
+      <a href="profile.html">profile</a>
+      <button class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+      <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase">log&nbsp;out</button>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="flex flex-col lg:flex-row justify-between p-8 gap-8">
+    <!-- Calendar Section -->
+    <section class="flex-1">
+      <h2 class="text-2xl font-bold mb-2"></h2>
+      <div class="flex justify-between items-center mb-3">
+        <button onclick="changeMonth(-1)" class="text-[#4c709a] text-sm font-semibold">&larr; Previous</button>
+        <h3 id="monthLabel" class="text-lg font-semibold"></h3>
+        <button onclick="changeMonth(1)" class="text-[#4c709a] text-sm font-semibold">Next &rarr;</button>
+      </div>
+
+      <div id="calendarGrid" class="grid grid-cols-7 gap-1 text-center text-xs font-semibold aspect-square max-w-full" style="max-width: 350px;">
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      </div>
+
+      <p class="text-sm text-[#6d28d9] mt-4">
+        Mood colours are based on your daily check-in: green = happy, yellow = okay, red = low.
+      </p>
+    </section>
+
+    <!-- Plant SVG -->
+    <section class="aspect-[3/4] w-full max-w-xs rounded-xl border border-[#e5e1f5] bg-white overflow-hidden flex items-end justify-center">
+      <svg id="plantSvg" class="plant-svg grow-transition" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- Pot -->
+        <g id="pot">
+          <polygon points="22,56 42,56 46,60 18,60" fill="#a0522d" />
+          <ellipse cx="32" cy="56" rx="14" ry="4" fill="#8b4513" />
+        </g>
+        <g id="seedling">
+          <circle id="seed" cx="32" cy="52" r="2" fill="#8B4513" visibility="hidden" />
+        </g>
+        <g id="stem">
+          <rect id="stemRect" x="31.5" y="50" width="1" height="0" fill="#228B22" />
+        </g>
+        <g id="leaves">
+          <ellipse id="leaf1" cx="32" cy="44" rx="3" ry="1.5" fill="#32CD32" visibility="hidden" />
+          <ellipse id="leaf2" cx="30" cy="40" rx="3" ry="1.5" fill="#32CD32" visibility="hidden" />
+          <ellipse id="leaf3" cx="34" cy="40" rx="3" ry="1.5" fill="#32CD32" visibility="hidden" />
+          <ellipse id="leaf4" cx="29" cy="36" rx="2.5" ry="1.2" fill="#32CD32" visibility="hidden" />
+          <ellipse id="leaf5" cx="35" cy="36" rx="2.5" ry="1.2" fill="#32CD32" visibility="hidden" />
+        </g>
+        <g id="flower">
+          <circle id="flowerOuter" cx="32" cy="28" r="3.5" fill="#ff69b4" visibility="hidden" />
+          <circle id="flowerInner" cx="32" cy="28" r="1.2" fill="#fff8dc" visibility="hidden" />
+        </g>
+      </svg>
+    </section>
+  </main>
+
+  <!-- Script -->
+  <script>
+    const calendarGrid = document.getElementById('calendarGrid');
+    const monthLabel = document.getElementById('monthLabel');
+    const moodLog = JSON.parse(localStorage.getItem('moodLog') || '{}');
+    let currentDate = new Date();
+
+    function renderCalendar(date) {
+      calendarGrid.innerHTML = `
+        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+      `;
+
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const startDay = new Date(year, month, 1).getDay();
+
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"];
+      monthLabel.textContent = `${monthNames[month]} ${year}`;
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const span = document.createElement("span");
+        if (day === 1) span.classList.add(`col-start-${startDay + 1}`);
+        span.textContent = day;
+
+        const key = `mood-${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const mood = moodLog[key];
+
+        if (mood !== undefined) {
+          span.className += ' ' + moodClass(mood);
+        }
+
+        calendarGrid.appendChild(span);
+      }
+    }
+
+    function moodClass(val) {
+      val = Number(val);
+      if (val >= 8) return 'bg-green-500 text-white rounded-full flex items-center justify-center w-8 h-8 mx-auto';
+      if (val >= 5) return 'bg-yellow-400 text-white rounded-full flex items-center justify-center w-8 h-8 mx-auto';
+      if (val >= 2) return 'bg-orange-400 text-white rounded-full flex items-center justify-center w-8 h-8 mx-auto';
+      return 'bg-red-500 text-white rounded-full flex items-center justify-center w-8 h-8 mx-auto';
+
+    }
+
+    function changeMonth(offset) {
+      currentDate.setMonth(currentDate.getMonth() + offset);
+      renderCalendar(currentDate);
+    }
+
+    // Plant growth logic
+    const today = new Date();
+    const todayKey = today.toISOString().slice(0, 10);
+    let growthDays = Number(localStorage.getItem("growthDays")) || 0;
+    if (localStorage.getItem("lastGrowthDate") !== todayKey && growthDays < 30) {
+      growthDays++;
+      localStorage.setItem("growthDays", growthDays);
+      localStorage.setItem("lastGrowthDate", todayKey);
+    }
+
+    const ratio = growthDays / 30;
+    document.getElementById("seed").setAttribute("visibility", growthDays < 3 ? "visible" : "hidden");
+    document.getElementById("stemRect").setAttribute("height", Math.min(5 + ratio * 25, 25));
+    document.getElementById("stemRect").setAttribute("y", 50 - Math.min(5 + ratio * 25, 25));
+    if (growthDays >= 5) document.getElementById("leaf1").setAttribute("visibility", "visible");
+    if (growthDays >= 10) document.getElementById("leaf2").setAttribute("visibility", "visible");
+    if (growthDays >= 15) document.getElementById("leaf3").setAttribute("visibility", "visible");
+    if (growthDays >= 20) document.getElementById("leaf4").setAttribute("visibility", "visible");
+    if (growthDays >= 23) document.getElementById("leaf5").setAttribute("visibility", "visible");
+    if (growthDays >= 28) {
+      document.getElementById("flowerOuter").setAttribute("visibility", "visible");
+      document.getElementById("flowerInner").setAttribute("visibility", "visible");
+      document.getElementById("flowerOuter").classList.add("bloom");
+      document.getElementById("flowerInner").classList.add("bloom");
+    }
+
+    renderCalendar(currentDate);
+  </script>
+</body>
+</html>

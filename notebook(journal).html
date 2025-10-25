@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title>Notebook - BEACON</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+
+    <style>
+      .notebook {
+        background: repeating-linear-gradient(
+          to bottom,
+          #fff 0px,
+          #fff 24px,
+          #d3e0ea 25px
+        );
+        line-height: 24px;
+        padding: 20px;
+        font-size: 18px;
+        color: #0e0e1b;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        font-family: 'Indie Flower', cursive;
+      }
+    </style>
+  </head>
+  <body class="bg-[#f8f8fb] text-[#0e0e1b] p-8 font-sans">
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold" id="promptTitle"></h1>
+      <p class="text-gray-600 mt-2" id="promptDesc"></p>
+    </header>
+
+
+    <main>
+      <textarea
+        class="notebook w-full h-[60vh] resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Start writing your thoughts here..."
+        id="journalEntry"></textarea>
+
+
+      <div class="mt-4 flex gap-4">
+        <button
+          id="saveEntryBtn"
+          class="bg-[#d1d1f9] text-[#0e0e1b] font-bold px-6 py-3 rounded-full text-sm border border-gray-300 hover:bg-gray-100 transition">
+          Save
+        </button>
+
+
+        <button
+          class="bg-white text-[#0e0e1b] font-bold px-8 py-3 rounded-full text-sm border border-gray-300 hover:bg-gray-100 transition"
+          onclick="window.history.back()">
+          Back
+        </button>
+      </div>
+    </main>
+
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const title = params.get('title') || "Journal Entry";
+      const desc = params.get('desc') || "";
+
+
+      document.getElementById('promptTitle').textContent = title;
+      document.getElementById('promptDesc').textContent = desc;
+
+
+      const saveEntryBtn = document.getElementById('saveEntryBtn');
+      const journalEntry = document.getElementById('journalEntry');
+
+
+      saveEntryBtn.addEventListener('click', () => {
+        const entries = JSON.parse(localStorage.getItem('beaconNotebook') || '[]');
+        entries.push({
+          title: title,
+          desc: desc,
+          content: journalEntry.value,
+          date: new Date().toISOString()
+        });
+        localStorage.setItem('beaconNotebook', JSON.stringify(entries));
+        alert('Your entry has been saved to your notebook!');
+        journalEntry.value = ''; // Clear after save
+      });
+    </script>
+  </body>
+</html>
+
+

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BEACON</title>
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <style>
+      body{font-family:Manrope,"Noto Sans",sans-serif;}
+    </style>
+  </head>
+
+  <body class="bg-[#f8f8fb] text-[#0e0e1b]">
+    <!-- Header -->
+    <header class="flex items-center justify-between border-b border-[#e8e8f3] px-10 py-4">
+      <div class="flex items-center gap-4">
+        <div class="w-8 h-8">
+          <!-- logo -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+            <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z"/>
+            <path d="M9 9h.01M15 9h.01"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+      </div>
+
+   
+      <nav class="flex gap-6 text-lg font-light">
+        <a href="home.html" class="font-semibold">home</a>
+        <a href="checkin.html">check in</a>
+        <a href="garden.html">my garden</a>
+        <a href="#">forum</a>
+        <a href="tips.html">tips</a>
+        <a href="help.html">help</a>
+        <a href="profile.html">profile</a>
+        <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+        <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase">log out</button>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="px-6 py-10 flex justify-center">
+      <div class="text-center max-w-2xl">
+        <div class="rounded-xl bg-cover bg-center bg-no-repeat h-60 mb-6"
+             style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGH60LpxnZOQ1HIJh9d6L_KltrWfYXBi2vFbtcKvjHMer7oyUfLQf6kx7hnj_0ZnTHSenOi_0bMO4ah8B7iPFgKhiwsGtT5v30QToaHbDsw-eKUKvcuFDImEri9TCETxtDWybeWuyhcobndagNxF4xcA5SfjcGeycgD16Qs9xMdIoOz9v7Kjfr0VRXd_upJtLtrjBQGF-PTbn71N4MKd6Z3Hdf_NXUj21w4oixicu_qKspHsCgyS1dTtLu7sWWBnIwbZcjnNFDGyc');">
+        </div>
+        <h2 class="text-4xl font-extrabold mb-2">BEACON</h2>
+        <p class="text-[#4f4f96] text-lg mb-2">Behavioral and Emotional Awareness for Connection, Observation and Nurturing</p>
+        <p class="text-lg">Recognize the early signs of anxiety, depression and burnout.</p>
+        <p class="text-lg mb-5">Foster empathy, spark meaningful conversation, and nurture mental wellness — one moment at a time.</p>
+        <!-- Go To button → check-in page -->
+        <a href="checkin.html" class="bg-[#d1d1f9] px-6 py-2 rounded-full text-sm inline-block">Go To</a>
+      </div>
+    </main>
+
+    <!-- Customized Popup auth modal -->
+<div id="authPopup" class="fixed inset-0 hidden bg-black bg-opacity-50 z-50 flex items-center justify-center">
+  <div class="relative bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full transition-all duration-300">
+    
+    <!-- Close Button -->
+    <button onclick="closePopup()" class="absolute top-3 right-4 text-2xl text-[#4f4f96] hover:text-[#0e0e1b]">&times;</button>
+    
+    <!--  Auth Modal -->
+<div id="authModal" class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl text-center">
+
+  <!-- Initial Options -->
+  <div id="authOptions" class="space-y-4">
+    <h2 class="text-2xl font-bold mb-4 text-[#4f4f96]">Welcome to BEACON</h2>
+    <p class="text-sm text-gray-600 mb-4">Your space for mindful check-ins 🌱</p>
+    <button onclick="showSignupForm()" class="w-full bg-[#d1d1f9] text-[#0e0e1b] rounded-full px-4 py-2 font-medium hover:bg-[#c2c2f3]">Sign Up</button>
+    <button onclick="showLoginForm()" class="w-full bg-[#ededff] text-[#0e0e1b] rounded-full px-4 py-2 font-medium hover:bg-[#e0e0f7]">Log In</button>
+  </div>
+
+  <!-- SIGN UP FORM -->
+  <form id="signupForm" class="space-y-4 hidden mt-6" onsubmit="handleSignUp(event)">
+    <input required type="text" placeholder="Name" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    <input required type="text" placeholder="Pronouns" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    <input required type="text" placeholder="Age" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    <input required type="text" placeholder="Gender" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    <input id="signupEmail" required type="email" placeholder="Email" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    <input id="signupPassword" required type="password" placeholder="Password" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    
+    <!-- Show Password Toggle -->
+    <label class="flex items-center gap-2 text-sm text-[#4f4f96]">
+      <input type="checkbox" onchange="togglePassword('signupPassword', this)" />
+      Show Password
+    </label>
+
+    <button type="submit" class="bg-[#8f8ff3] text-white px-4 py-2 rounded-lg w-full">Save Profile</button>
+  </form>
+
+  <!-- LOG IN FORM -->
+  <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 hidden mt-6">
+    <input id="loginEmail" required type="email" placeholder="Email" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    <input id="loginPassword" required type="password" placeholder="Password" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+    
+    <!-- Show Password Toggle -->
+    <label class="flex items-center gap-2 text-sm text-[#4f4f96]">
+      <input type="checkbox" onchange="togglePassword('loginPassword', this)" />
+      Show Password
+    </label>
+
+    <button type="submit" class="bg-[#8f8ff3] text-white px-4 py-2 rounded-lg w-full">Log In</button>
+  </form>
+</div>
+
+<!--  Toast Notification -->
+<div id="toast" class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-[#d1d1f9] text-[#0e0e1b] text-sm px-6 py-3 rounded-xl shadow-xl hidden z-50 transition duration-300">
+  <span id="toastMessage"></span>
+</div>
+
+  
+    <!-- Email Verification -->
+    <form id="emailForm" onsubmit="sendVerificationCode(event)" class="hidden mt-4 space-y-3">
+      <input id="verifyEmail" required type="email" placeholder="Email" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+      <button type="submit" class="bg-[#d1d1f9] hover:bg-[#c2c2f7] py-2 rounded-full w-full font-medium">Send Code</button>
+    </form>
+
+    <!-- Code Input -->
+    <form id="codeForm" onsubmit="verifyCode(event)" class="hidden mt-4 space-y-3">
+      <input id="verificationCode" required type="text" placeholder="Enter 6-digit code" class="w-full border border-[#dcdcf3] p-2 rounded-lg" />
+      <button type="submit" class="bg-[#e8e8f3] hover:bg-[#dcdcf3] py-2 rounded-full w-full font-medium">Verify Code</button>
+    </form>
+
+    <!-- Quiz Form (already styled well, just adjusted buttons and spacing) -->
+    <form id="quizForm" onsubmit="completeSignup(event)" class="hidden text-left mt-6 max-h-[70vh] overflow-y-auto pr-2">
+      <h3 class="text-lg font-bold mb-4 text-center text-[#0e0e1b]">Mental Health Quiz</h3>
+        
+          <label class="block mb-3">1. How often do you feel stressed?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Rarely</option>
+              <option>Sometimes</option>
+              <option>Often</option>
+              <option>Almost always</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">2. How often do you feel overwhelmed by your responsibilities?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Never</option>
+              <option>Occasionally</option>
+              <option>Frequently</option>
+              <option>Constantly</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">3. How often do you feel sad or down for no clear reason?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Never</option>
+              <option>Rarely</option>
+              <option>Often</option>
+              <option>Every day</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">4. How often do you have trouble sleeping due to worry or overthinking?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Never</option>
+              <option>Sometimes</option>
+              <option>Often</option>
+              <option>Almost every night</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">5. How often do you feel lonely or disconnected from others?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Never</option>
+              <option>Occasionally</option>
+              <option>Often</option>
+              <option>Always</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">6. How often do you feel motivated and energetic during the day?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Always</option>
+              <option>Often</option>
+              <option>Rarely</option>
+              <option>Never</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">7. How often do you find it hard to concentrate or focus?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Never</option>
+              <option>Sometimes</option>
+              <option>Often</option>
+              <option>All the time</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">8. How often do you feel anxious or worried even when there’s no clear reason?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Never</option>
+              <option>Occasionally</option>
+              <option>Frequently</option>
+              <option>Constantly</option>
+            </select>
+          </label>
+        
+          <label class="block mb-3">9. How often do you feel good about yourself and your life?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Always</option>
+              <option>Most of the time</option>
+              <option>Occasionally</option>
+              <option>Rarely</option>
+            </select>
+          </label>
+        
+          <label class="block mb-4">10. How often do you feel like talking to someone about your feelings?
+            <select required class="w-full border mt-1 p-2 rounded">
+              <option value="">Select</option>
+              <option>Always</option>
+              <option>Often</option>
+              <option>Sometimes</option>
+              <option>Never</option>
+            </select>
+          </label>
+        
+          <button type="submit" class="bg-[#d1d1f9] mt-4 px-4 py-2 rounded-full w-full">Submit Quiz</button>
+        </form>
+        
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-[#d1d1f9] text-[#0e0e1b] text-sm px-6 py-3 rounded-xl shadow-xl hidden z-50 transition duration-300">
+      <span id="toastMessage">Verification code sent to your email :)</span>
+    </div>
+
+  <script>
+  // AUTH POPUP HANDLING
+  function openAuthPopup() {
+    document.getElementById("authPopup").classList.remove("hidden");
+  }
+
+  function closePopup() {
+    document.getElementById("authPopup").classList.add("hidden");
+    document.getElementById("authOptions").classList.remove("hidden");
+    document.getElementById("emailForm")?.classList.add("hidden");
+    document.getElementById("signupForm")?.classList.add("hidden");
+    document.getElementById("loginForm")?.classList.add("hidden");
+    document.getElementById("quizForm")?.classList.add("hidden");
+    document.getElementById("codeForm")?.classList.add("hidden");
+  }
+
+  // Show Forms
+  function showSignupForm() {
+    document.getElementById("authOptions").classList.add("hidden");
+    document.getElementById("emailForm").classList.remove("hidden");
+  }
+
+  function showLoginForm() {
+    document.getElementById("authOptions").classList.add("hidden");
+    document.getElementById("loginForm").classList.remove("hidden");
+  }
+
+  function togglePassword(id, checkbox) {
+    const input = document.getElementById(id);
+    input.type = checkbox.checked ? "text" : "password";
+  }
+
+  function showToast(message, duration = 3000) {
+    const toast = document.getElementById("toast");
+    const toastMessage = document.getElementById("toastMessage");
+    toastMessage.textContent = message;
+    toast.classList.remove("hidden");
+
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, duration);
+  }
+
+  function showLogoutButton() {
+    const btn = document.getElementById("logoutBtn");
+    btn.classList.remove("hidden");
+    btn.onclick = () => {
+      showToast("You have been logged out.");
+      btn.classList.add("hidden");
+      localStorage.removeItem("beacon_user_email");
+    };
+  }
+
+  // SEND VERIFICATION CODE
+  async function sendVerificationCode(e) {
+    e.preventDefault();
+    const email = document.getElementById("verifyEmail").value;
+
+    try {
+      const res = await fetch("http://localhost:3000/send-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+
+      if (res.ok) {
+        showToast("Verification code sent to your email :)");
+        document.getElementById("emailForm").classList.add("hidden");
+        document.getElementById("codeForm").classList.remove("hidden");
+        localStorage.setItem("beaconEmail", email);
+      } else {
+        const data = await res.json();
+        showToast(data.error || "Failed to send code.");
+      }
+    } catch (err) {
+      console.error(err);
+      showToast("Something went wrong.");
+    }
+  }
+
+  //  VERIFY CODE
+  async function verifyCode(e) {
+  e.preventDefault();
+
+  const code = document.getElementById("verificationCode").value;
+  const email = localStorage.getItem("beaconEmail");
+
+  if (!email || !code) {
+    showToast("Please enter the verification code.");
+    return;
+  }
+
+  try {
+    // STEP 1: Register the user in DB first with temp password
+    const dummyPassword = "temp-password-" + Math.random().toString(36).slice(2);
+
+    await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password: dummyPassword })
+    });
+
+    // STEP 2: Verify the code
+    const res = await fetch("http://localhost:3000/verify-code", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, code })
+    });
+
+    if (res.ok) {
+      localStorage.setItem("beacon_user_email", email);
+      showToast("Email verified!");
+      document.getElementById("codeForm").classList.add("hidden");
+      document.getElementById("signupForm").classList.remove("hidden");
+    } else {
+      const data = await res.json();
+      showToast(data.message || "Incorrect code.");
+    }
+  } catch (err) {
+    console.error(err);
+    showToast("Something went wrong.");
+  }
+}
+
+
+async function handleSignUp(e) {
+  e.preventDefault();
+
+  const email = localStorage.getItem("beacon_user_email");
+  const password = document.getElementById("signupPassword").value;
+  const name = document.querySelector('#signupForm input[placeholder="Name"]').value;
+  const pronouns = document.querySelector('#signupForm input[placeholder="Pronouns"]').value;
+  const customPronouns = document.getElementById("signupCustomPronouns")?.value || "";
+  const age = document.querySelector('#signupForm input[placeholder="Age"]').value;
+  const gender = document.querySelector('#signupForm input[placeholder="Gender"]').value;
+
+  try {
+    const profileRes = await fetch("http://localhost:3000/api/save-profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: email,
+        profileData: {
+          name,
+          age,
+          gender,
+          pronouns: pronouns === "custom" ? customPronouns : pronouns
+        }
+      })
+    });
+
+    const profileData = await profileRes.json();
+    if (!profileData.success) {
+      showToast("Failed to save profile.");
+      return;
+    }
+
+    const passRes = await fetch("http://localhost:3000/api/update-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const passData = await passRes.json();
+    if (!passData.success) {
+      showToast("Failed to set your password.");
+      return;
+    }
+
+    localStorage.setItem("beacon_user_name", name);
+    localStorage.setItem("beacon_user_pronouns", pronouns === "custom" ? customPronouns : pronouns);
+    localStorage.setItem("beacon_user_age", age);
+    localStorage.setItem("beacon_user_gender", gender);
+
+    showToast("🎉 Signup complete!");
+    window.location.href = "profile.html";
+
+  } catch (err) {
+    console.error(err);
+    showToast("Something went wrong.");
+  }
+}
+
+
+
+  //  HANDLE LOGIN
+  async function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const res = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      const verifyRes = await fetch(`http://localhost:3000/is-verified/${email}`);
+      const verifyData = await verifyRes.json();
+
+      if (verifyData.verified) {
+        localStorage.setItem("beacon_user_email", email);
+        showToast("Login successful! 🎉");
+
+        // After successful login
+        localStorage.setItem("beacon_user_email", email);
+
+        setTimeout(() => {
+          window.location.href = "profile.html";
+        }, 2000);
+      } else {
+        showToast("Please verify your email first.");
+      }
+    } else {
+      showToast(data.message || "Login failed.");
+    }
+  }
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEACON – Game Break</title>
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+
+  <style>
+    body {
+      font-family: Manrope, "Noto Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f8f8fb] text-[#0e0e1b] min-h-screen flex flex-col">
+
+
+  <!-- Header -->
+  <header class="flex items-center justify-between border-b border-[#e8e8f3] px-10 py-4">
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+          <path d="M12 20s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10z" />
+          <path d="M9 9h.01M15 9h.01" />
+        </svg>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight">BEACON</h1>
+    </div>
+    <nav class="flex gap-6 text-lg font-light">
+      <a href="home.html">home</a>
+      <a href="checkin.html">check&nbsp;in</a>
+      <a href="garden.html">my&nbsp;garden</a>
+      <a href="#">forum</a>
+      <a href="tips.html" class="font-semibold">tips</a>
+      <a href="help.html">help</a>
+      <a href="profile.html">profile</a>
+      <button onclick="openAuthPopup()" class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+      <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase text-[#0e0e1b]">log&nbsp;out</button>
+    </nav>
+  </header>
+
+
+  <!-- Main Content -->
+  <main class="flex-grow px-6 md:px-16 py-12">
+    <h2 class="text-4xl font-extrabold mb-6">Mini Game Break</h2>
+    <p class="mb-8 text-lg whitespace-nowrap">
+  Take a short, mindful break with these calming mini-games designed to help you reset and recharge.
+</p>
+
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Game Cards -->
+      <a href="https://paveldogreat.github.io/WebGL-Fluid-Simulation/" target="_blank" class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+        <img src="images/img1.png" alt="Fluid Simulation" class="w-full h-48 object-cover rounded-md mb-3" />
+        <h3 class="font-semibold text-xl">Fluid Simulation</h3>
+        <p class="text-sm text-gray-600">Play with calming fluid patterns.</p>
+      </a>
+
+
+      <a href="https://www.bubbleshooter.com" target="_blank" class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+        <img src="images/img2.png" alt="Bubble Shooter" class="w-full h-48 object-cover rounded-md mb-3" />
+        <h3 class="font-semibold text-xl">Bubble Shooter</h3>
+        <p class="text-sm text-gray-600">Relax and pop some colorful bubbles.</p>
+      </a>
+
+
+      <a href="https://www.mandalagaba.com" target="_blank" class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+        <img src="images/img3.jpg" alt="Mandala Game" class="w-full h-48 object-cover rounded-md mb-3" />
+        <h3 class="font-semibold text-xl">Mandala Game</h3>
+        <p class="text-sm text-gray-600">Create beautiful symmetric mandalas.</p>
+      </a>
+
+
+      <a href="https://sudoku.com/" target="_blank" class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+        <img src="images/img4.png" alt="2048" class="w-full h-48 object-cover rounded-md mb-3" />
+        <h3 class="font-semibold text-xl">Sudoku</h3>
+        <p class="text-sm text-gray-600">Brain teasers</p>
+      </a>
+
+
+      <a href="https://www.crazygames.com/game/what-s-the-difference-online" target="_blank" class="bg-white rounded-xl p-4 shadow hover:shadow-lg transition flex flex-col items-center text-center">
+        <img src="images/img5.png" alt="Relaxing Shapes" class="w-full h-48 object-cover rounded-md mb-3" />
+        <h3 class="font-semibold text-xl">Spot The Difference</h3>
+        <p class="text-sm text-gray-600">Click and spot the differences</p>
+      </a>
+    </div>
+
+
+    <!-- Back Button -->
+    <div class="mt-10 flex justify-center">
+  <button onclick="window.location.href='tips.html'"
+          class="underline text-sm text-[#4f4f96] hover:text-[#2e2e80]">
+    Go back to tips page
+  </button>
+</div>
+  </main>
+</body>
+</html>

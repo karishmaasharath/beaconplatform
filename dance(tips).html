@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BEACON – Dance</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-[#f9f8fc] group/design-root overflow-x-hidden"
+      style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <!-- Header -->
+        <header
+          class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#ebe7f3] px-10 py-3"
+        >
+          <div class="flex items-center gap-4 text-[#120e1b]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-[#120e1b] text-lg font-bold leading-tight tracking-[-0.015em]">BEACON</h2>
+          </div>
+          <nav class="flex gap-6 text-lg font-light">
+            <a href="home.html">home</a>
+            <a href="checkin.html">check&nbsp;in</a>
+            <a href="garden.html">my&nbsp;garden</a>
+            <a href="#">forum</a>
+            <a href="tips.html" class="font-semibold">tips</a>
+            <a href="help.html">help</a>
+            <a href="profile.html">profile</a>
+            <button class="bg-[#e8e8f3] px-4 py-1 rounded-full text-sm">register</button>
+            <button id="logoutBtn" class="hidden px-4 py-1 text-sm lowercase text-[#0e0e1b]">log out</button>
+          </nav>
+        </header>
+
+        <!-- Main Content -->
+        <div class="px-40 py-10 flex flex-col grow">
+          <h3 class="text-[#120e1b] text-2xl font-bold mb-2">Beginner</h3>
+          <p class="text-[#4f4f96] text-base mt-2 mb-8">Perfect for those new to dance or looking for a gentle start.</p>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3">
+            <a href="https://www.youtube.com/watch?v=mCKmMo8I4Kg" target="_blank"><img src="https://img.youtube.com/vi/mCKmMo8I4Kg/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=xnDhDaVxNng" target="_blank"><img src="https://img.youtube.com/vi/xnDhDaVxNng/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=ka4tN6RJvgQ" target="_blank"><img src="https://img.youtube.com/vi/ka4tN6RJvgQ/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=iL6ufJLkiUo" target="_blank"><img src="https://img.youtube.com/vi/iL6ufJLkiUo/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=bqVBMv_nqJ4" target="_blank"><img src="https://img.youtube.com/vi/bqVBMv_nqJ4/0.jpg" class="rounded-xl" /></a>
+          </div>
+
+          <h3 class="text-[#120e1b] text-2xl font-bold mt-10 mb-2">Intermediate</h3>
+          <p class="text-[#4f4f96] text-base mt-2 mb-8">For those with some dance experience, these offer more complex moves.</p>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3">
+            <a href="https://www.youtube.com/watch?v=QIpUES_LK7E" target="_blank"><img src="https://img.youtube.com/vi/QIpUES_LK7E/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=QegSjK9Itbs" target="_blank"><img src="https://img.youtube.com/vi/QegSjK9Itbs/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=QPFyyKqFi4k" target="_blank"><img src="https://img.youtube.com/vi/QPFyyKqFi4k/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=IZqy_hacR_0" target="_blank"><img src="https://img.youtube.com/vi/IZqy_hacR_0/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=XnPw82kImXI" target="_blank"><img src="https://img.youtube.com/vi/XnPw82kImXI/0.jpg" class="rounded-xl" /></a>
+          </div>
+
+          <h3 class="text-[#120e1b] text-2xl font-bold mt-10 mb-2">Advanced</h3>
+          <p class="text-[#4f4f96] text-base mt-2 mb-8">Challenge yourself with high-energy routines and intricate choreography.</p>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 mb-12">
+            <a href="https://www.youtube.com/watch?v=RFfbZV3bwys" target="_blank"><img src="https://img.youtube.com/vi/RFfbZV3bwys/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=DYDeGFiODJA" target="_blank"><img src="https://img.youtube.com/vi/DYDeGFiODJA/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=GMQ25-6tk5s" target="_blank"><img src="https://img.youtube.com/vi/GMQ25-6tk5s/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=4FrTY-uesNU" target="_blank"><img src="https://img.youtube.com/vi/4FrTY-uesNU/0.jpg" class="rounded-xl" /></a>
+            <a href="https://www.youtube.com/watch?v=vBKYRIUhUUM" target="_blank"><img src="https://img.youtube.com/vi/vBKYRIUhUUM/0.jpg" class="rounded-xl" /></a>
+          </div>
+
+          <!-- Go Back Button at bottom center -->
+          <div class="w-full text-center mt-auto pb-10">
+            <button
+              onclick="window.location.href='tips.html'"
+              class="underline text-sm text-[#4f4f96] hover:text-[#2e2e80]"
+            >
+              Go back to tips page
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
