@@ -1,0 +1,21 @@
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Node dependencies
+node_modules/
+
+# Java/Maven build output
+**/target/
+*.class
+
+# Editor and operating system files
+.DS_Store
+.vscode/
+
+# Local dataset and large model weights
+test.csv
+bert_journal_model/model.safetensors
